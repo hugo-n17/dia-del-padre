@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Día del Padre</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">💙 Día del Padre</div>
+    <ul class="nav-links">
+      <li><a href="#que-es">¿Qué es un papá?</a></li>
+      <li><a href="#curiosidades">Curiosidades</a></li>
+      <li><a href="#regalos">Ideas de regalo</a></li>
+      <li><a href="#frases">Frases</a></li>
+    </ul>
+  </nav>
+
+  <!-- BANNER -->
+ <!-- BANNER CON CARRUSEL -->
+<section class="banner">
+  <div class="banner-estrellas" aria-hidden="true">
+    <span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+
+  <!-- CARRUSEL DE FOTOS -->
+  <div class="carrusel">
+    <div class="carrusel-slide activo"><img src="fotos/foto1.jpg" alt="foto 1"></div>
+    <div class="carrusel-slide"><img src="fotos/foto2.jpg" alt="foto 2"></div>
+    <div class="carrusel-slide"><img src="fotos/foto3.jpg" alt="foto 3"></div>
+    <div class="carrusel-slide"><img src="fotos/foto4.jpg" alt="foto 4"></div>
+    <div class="carrusel-overlay"></div>
+</div>
+
+  <!-- PUNTOS DE NAVEGACIÓN -->
+  <div class="carrusel-puntos">
+    <span class="punto activo" onclick="irASlide(0)"></span>
+    <span class="punto" onclick="irASlide(1)"></span>
+    <span class="punto" onclick="irASlide(2)"></span>
+    <span class="punto" onclick="irASlide(3)"></span>
+  </div>
+
+  <!-- FLECHAS -->
+  <button class="carrusel-flecha izq" onclick="cambiarSlide(-1)">&#8249;</button>
+  <button class="carrusel-flecha der" onclick="cambiarSlide(1)">&#8250;</button>
+
+  <!-- CONTENIDO ENCIMA -->
+  <div class="banner-content">
+    <div class="papa-icon">
+      <svg width="100" height="100" viewBox="0 0 90 90" aria-hidden="true">
+        <rect x="25" y="48" width="40" height="36" rx="8" fill="#B5D4F4"/>
+        <polygon points="45,52 42,62 45,70 48,62" fill="#185FA5"/>
+        <polygon points="43,50 47,50 48,54 45,52 42,54" fill="#0C447C"/>
+        <circle cx="45" cy="34" r="18" fill="#F5C4B3"/>
+        <ellipse cx="45" cy="18" rx="18" ry="10" fill="#2C2C2A"/>
+        <rect x="27" y="20" width="36" height="8" fill="#2C2C2A"/>
+        <circle cx="38" cy="33" r="3" fill="white"/>
+        <circle cx="52" cy="33" r="3" fill="white"/>
+        <circle cx="39" cy="34" r="1.5" fill="#2C2C2A"/>
+        <circle cx="53" cy="34" r="1.5" fill="#2C2C2A"/>
+        <path d="M38 42 Q45 48 52 42" stroke="#A32D2D" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        <rect x="5" y="50" width="22" height="10" rx="5" fill="#B5D4F4"/>
+        <rect x="63" y="50" width="22" height="10" rx="5" fill="#B5D4F4"/>
+        <circle cx="10" cy="55" r="6" fill="#F5C4B3"/>
+        <circle cx="80" cy="55" r="6" fill="#F5C4B3"/>
+      </svg>
+    </div>
+    <p class="banner-sub">Celebrando a todos los papás del mundo</p>
+    <h1 class="banner-titulo">Feliz Día del Padre 💙</h1>
+    <p class="banner-desc">Para el hombre que nos enseñó a caminar, a levantarnos y a nunca rendirnos.</p>
+
+    <div class="reacciones">
+      <button class="reaccion-btn" onclick="reaccionar('corazon')">
+        ❤️ <span id="count-corazon">0</span>
+      </button>
+      <button class="reaccion-btn" onclick="reaccionar('fiesta')">
+        🎉 <span id="count-fiesta">0</span>
+      </button>
+      <button class="reaccion-btn" onclick="reaccionar('aplauso')">
+        👏 <span id="count-aplauso">0</span>
+      </button>
+    </div>
+
+    <div class="social-bar">
+      <button class="btn-compartir" onclick="compartir()">
+        🔗 Compartir esta página con tu papá
+      </button>
+      <div class="visitas">
+        👁 <span id="visitas">0</span> personas visitaron esta página hoy
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRES -->
+<section class="seccion" id="sobres">
+  <h2 class="seccion-titulo">💌 Mensajes especiales</h2>
+  <div class="sobres-grid">
+
+    <div class="sobre-container">
+      <div class="sobre-frente" onclick="mostrarClave(this)">
+        <div class="sobre-solapa"></div>
+        <div class="sobre-emoji">📩</div>
+        <p class="sobre-nombre">Papá Darwin</p>
+        <p class="sobre-hint">Toca para abrir</p>
+      </div>
+      <div class="sobre-clave" style="display:none">
+  <p class="clave-titulo">🔒 Escribe tu nombre</p>
+  <input type="password" class="clave-input" placeholder="Contraseña...">
+  <button class="clave-btn" onclick="verificarClave(this, 'darwin', 'Papá, gracias por todo lo que haces por mí cada día. Eres el mejor y hoy es tu día. ¡Te quiero! 🎉')">Abrir</button>
+  <p class="clave-error" style="display:none">❌ Contraseña incorrecta</p>
+  <button class="volver-btn" onclick="volverSobre(this)">← Volver</button>
+</div>
+      <div class="sobre-mensaje" style="display:none">
+        <p class="mensaje-texto"></p>
+        <button class="cerrar-btn" onclick="cerrarSobre(this)">Cerrar ✕</button>
+      </div>
+    </div>
+
+    <div class="sobre-container">
+      <div class="sobre-frente" onclick="mostrarClave(this)">
+        <div class="sobre-solapa"></div>
+        <div class="sobre-emoji">📩</div>
+        <p class="sobre-nombre">Oscar</p>
+        <p class="sobre-hint">Toca para abrir</p>
+      </div>
+      <div class="sobre-clave" style="display:none">
+  <p class="clave-titulo">🔒 Escribe tu nombre</p>
+  <input type="password" class="clave-input" placeholder="Contraseña...">
+  <button class="clave-btn" onclick="verificarClave(this, 'oscar', 'Oscar, hermano, los momentos contigo no tienen precio. Gracias por estar siempre. ¡Eres lo máximo bro! 🤜🤛')">Abrir</button>
+  <p class="clave-error" style="display:none">❌ Contraseña incorrecta</p>
+  <button class="volver-btn" onclick="volverSobre(this)">← Volver</button>
+</div>
+      <div class="sobre-mensaje" style="display:none">
+        <p class="mensaje-texto"></p>
+        <button class="cerrar-btn" onclick="cerrarSobre(this)">Cerrar ✕</button>
+      </div>
+    </div>
+
+    <div class="sobre-container">
+      <div class="sobre-frente" onclick="mostrarClave(this)">
+        <div class="sobre-solapa"></div>
+        <div class="sobre-emoji">📩</div>
+        <p class="sobre-nombre">Carlos</p>
+        <p class="sobre-hint">Toca para abrir</p>
+      </div>
+      <div class="sobre-clave" style="display:none">
+  <p class="clave-titulo">🔒 Escribe tu nombre</p>
+  <input type="password" class="clave-input" placeholder="Contraseña...">
+  <button class="clave-btn" onclick="verificarClave(this, 'carlos', 'Carlos, hermano, cada momento contigo vale oro. Gracias por estar siempre ahí. ¡Somos familia y eso es lo más importante! ❤️')">Abrir</button>
+  <p class="clave-error" style="display:none">❌ Contraseña incorrecta</p>
+  <button class="volver-btn" onclick="volverSobre(this)">← Volver</button>
+</div>
+      <div class="sobre-mensaje" style="display:none">
+        <p class="mensaje-texto"></p>
+        <button class="cerrar-btn" onclick="cerrarSobre(this)">Cerrar ✕</button>
+      </div>
+    </div>
+
+    <div class="sobre-container">
+      <div class="sobre-frente" onclick="mostrarClave(this)">
+        <div class="sobre-solapa"></div>
+        <div class="sobre-emoji">📩</div>
+        <p class="sobre-nombre">Adderly</p>
+        <p class="sobre-hint">Toca para abrir</p>
+      </div>
+      <div class="sobre-clave" style="display:none">
+  <p class="clave-titulo">🔒 Escribe tu nombre</p>
+  <input type="password" class="clave-input" placeholder="Contraseña...">
+  <button class="clave-btn" onclick="verificarClave(this, 'adderly', 'Adderly, hermano, contigo los momentos siempre son únicos. Gracias por ser parte de esto. ¡Nada nos separa hermano! 🔥')">Abrir</button>
+  <p class="clave-error" style="display:n one">❌ Contraseña incorrecta</p>
+  <button class="volver-btn" onclick="volverSobre(this)">← Volver</button>
+</div>
+      <div class="sobre-mensaje" style="display:none">
+        <p class="mensaje-texto"></p>
+        <button class="cerrar-btn" onclick="cerrarSobre(this)">Cerrar ✕</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+  <!-- QUÉ ES UN PAPÁ -->
+  <section class="seccion" id="que-es">
+    <h2 class="seccion-titulo">💛 ¿Qué es un papá?</h2>
+    <div class="frases-grid">
+      <div class="frase-card">
+        <p>Un papá es el primero en creer en ti cuando tú mismo dudas.</p>
+      </div>
+      <div class="frase-card">
+        <p>Es el abrazo que no necesita palabras y el consejo que llega justo a tiempo.</p>
+      </div>
+      <div class="frase-card">
+        <p>Un papá no es solo quien te da la vida, sino quien te enseña a vivirla.</p>
+      </div>
+      <div class="frase-card">
+        <p>Es el superhéroe sin capa que trabaja en silencio para que nada te falte.</p>
+      </div>
+      <div class="frase-card">
+        <p>Un papá es quien te lleva en hombros para que veas el mundo más grande.</p>
+      </div>
+      <div class="frase-card">
+        <p>Es el ejemplo que sin saberlo, seguimos toda la vida.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CURIOSIDADES -->
+  <section class="seccion seccion-gris" id="curiosidades">
+    <h2 class="seccion-titulo">🌍 Datos curiosos del Día del Padre</h2>
+    <div class="curiosidades-grid">
+      <div class="curiosidad-card">
+        <div class="curio-icon">📅</div>
+        <h3>Origen</h3>
+        <p>El Día del Padre fue impulsado por Sonora Smart Dodd en 1910 en EE.UU., en honor a su padre que crió solo a 6 hijos tras la muerte de su esposa.</p>
+      </div>
+      <div class="curiosidad-card">
+        <div class="curio-icon">🇺🇸</div>
+        <h3>Estados Unidos</h3>
+        <p>Se celebra el tercer domingo de junio desde 1966, cuando el presidente Lyndon Johnson lo declaró festividad nacional.</p>
+      </div>
+      <div class="curiosidad-card">
+        <div class="curio-icon">🇪🇸</div>
+        <h3>España</h3>
+        <p>Se celebra el 19 de marzo, día de San José, patrono de los padres según la tradición católica.</p>
+      </div>
+      <div class="curiosidad-card">
+        <div class="curio-icon">🇩🇪</div>
+        <h3>Alemania</h3>
+        <p>Se llama "Vatertag" y se celebra el Día de la Ascensión. Es tradición que los hombres salgan a caminar con carritos llenos de comida y bebida.</p>
+      </div>
+      <div class="curiosidad-card">
+        <div class="curio-icon">🇧🇷</div>
+        <h3>Brasil</h3>
+        <p>Se celebra el segundo domingo de agosto y es uno de los días con mayor consumo comercial del año.</p>
+      </div>
+      <div class="curiosidad-card">
+        <div class="curio-icon">🇵🇪</div>
+        <h3>Perú</h3>
+        <p>Se celebra el tercer domingo de junio, igual que en muchos países de Latinoamérica.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- IDEAS DE REGALO -->
+  <section class="seccion" id="regalos">
+    <h2 class="seccion-titulo">🎁 Ideas de regalo para papá</h2>
+    <div class="regalos-grid">
+      <div class="regalo-card">
+        <div class="regalo-emoji">⌚</div>
+        <h3>Reloj o accesorio</h3>
+        <p>Un clásico que siempre funciona. Elige uno que vaya con su estilo.</p>
+        <span class="tag">Popular</span>
+      </div>
+      <div class="regalo-card">
+        <div class="regalo-emoji">🍽️</div>
+        <h3>Salida a comer</h3>
+        <p>Llévalo a su restaurante favorito o cocínale algo especial en casa.</p>
+        <span class="tag">Especial</span>
+      </div>
+      <div class="regalo-card">
+        <div class="regalo-emoji">🎮</div>
+        <h3>Experiencia</h3>
+        <p>Un partido de fútbol, karting, cine o lo que más le guste hacer.</p>
+        <span class="tag">Memorable</span>
+      </div>
+      <div class="regalo-card">
+        <div class="regalo-emoji">👕</div>
+        <h3>Ropa personalizada</h3>
+        <p>Una camiseta con un mensaje o foto especial que sea solo para él.</p>
+        <span class="tag">Original</span>
+      </div>
+      <div class="regalo-card">
+        <div class="regalo-emoji">📸</div>
+        <h3>Álbum de fotos</h3>
+        <p>Recopila los mejores momentos juntos en un álbum físico o digital.</p>
+        <span class="tag">Emotivo</span>
+      </div>
+      <div class="regalo-card">
+        <div class="regalo-emoji">💆</div>
+        <h3>Día de relax</h3>
+        <p>Un masaje, spa o simplemente un día libre sin preocupaciones.</p>
+        <span class="tag">Relajante</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FRASES CÉLEBRES -->
+  <section class="seccion seccion-gris" id="frases">
+    <h2 class="seccion-titulo">✨ Frases célebres sobre los padres</h2>
+    <div class="quotes-grid">
+      <div class="quote-card">
+        <p class="quote-texto">"Un padre es alguien que quiere atrapar cuando caes antes de que llegues al suelo."</p>
+        <p class="quote-autor">— Laurel Atherton</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-texto">"Cualquier hombre puede ser padre, pero se necesita alguien especial para ser papá."</p>
+        <p class="quote-autor">— Anne Geddes</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-texto">"El corazón de un padre es la obra maestra de la naturaleza."</p>
+        <p class="quote-autor">— Antoine François Prévost</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-texto">"Ser padre es la mayor aventura que un hombre puede emprender."</p>
+        <p class="quote-autor">— Tim Allen</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-texto">"Mi padre no me dijo cómo vivir; vivió y me dejó observarlo."</p>
+        <p class="quote-autor">— Clarence Budington Kelland</p>
+      </div>
+      <div class="quote-card">
+        <p class="quote-texto">"Un buen padre vale por cien maestros."</p>
+        <p class="quote-autor">— Jean Jacques Rousseau</p>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>💙 Feliz Día del Padre — Tercer domingo de junio</p>
+    <p class="footer-sub">Hecho con amor para todos los papás del mundo</p>
+  </footer>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">🔗 ¡Link copiado! Compártelo con tu papá</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
